@@ -1,0 +1,11 @@
+server:
+  port: 8010
+spring:
+  application:
+    name: ribbon-user
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:8761/eureka/,http://peer2:8762/eureka/ # 指定注册中⼼的地址
+  instance:
+    preferIpAddress: true
