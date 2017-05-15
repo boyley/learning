@@ -17,6 +17,8 @@
         <module>spring-cloud-study-cluster-eureka-server</module>
         <module>spring-cloud-study-cluster-provider-user</module>
         <module>spring-cloud-study-ribbon-user</module>
+        <module>spring-cloud-study-feign-user</module>
+        <module>spring-cloud-study-ribbon-hystrix-user</module>
     </modules>
 
     <properties>
