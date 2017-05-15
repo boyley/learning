@@ -19,6 +19,9 @@
         <module>spring-cloud-study-ribbon-user</module>
         <module>spring-cloud-study-feign-user</module>
         <module>spring-cloud-study-ribbon-hystrix-user</module>
+        <module>spring-cloud-study-feign-hystrix-user</module>
+        <module>spring-cloud-study-hystrix-dashboard</module>
+        <module>spring-cloud-study-hystrix-turbine</module>
     </modules>
 
     <properties>
