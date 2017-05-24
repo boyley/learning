@@ -2,6 +2,7 @@ package cn.shagle.learning.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 /**
  * Created by Danlu on 2017/5/12.
@@ -17,7 +18,13 @@ public class User implements Serializable {
     private String username;
 
     @Column
+    private String name;
+
+    @Column
     private int age;
+
+    @Column
+    private BigDecimal balance;
 
     public int getId() {
         return id;
@@ -35,11 +42,27 @@ public class User implements Serializable {
         this.username = username;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public int getAge() {
         return age;
     }
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public BigDecimal getBalance() {
+        return balance;
+    }
+
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
     }
 }
