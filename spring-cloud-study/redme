@@ -1,0 +1,33 @@
+1. 多网卡环境下的IP选择
+1.1 忽略指定名称的网卡
+spring:
+    cloud:
+        inetutils:
+            ignored-interfaces:
+                - docker0
+                - veth.*
+这样就可以忽略docker0网卡及所有以veth开头的网卡
+
+2. 使用正则表达式，指定使用的网络地址
+spring:
+    cloud:
+        inetutils:
+            preferredNetworks:
+                - 192.168
+                - 10.0
+3. 只使用站点本地地址
+spring:
+    cloud:
+        inetutils:
+            useOnlySiteLocalInterfaces: true
+这样就可以强制使用站点本地地址
+
+4. 手动指定IP地址
+eureka:
+    instance:
+        perfer-ip-address: true
+        ip-address: 127.0.0.1
+
+
+
+
