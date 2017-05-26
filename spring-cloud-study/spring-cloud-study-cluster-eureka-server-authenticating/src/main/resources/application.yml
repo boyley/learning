@@ -1,0 +1,38 @@
+security:
+  basic:
+    enabled: true   # 开启基于HTTP basic的认证
+  user:
+    name: user        # 配置登陆的账号是user
+    password: password123   # 配置登陆的密码是password123
+#eureka:
+#  client:
+#    register-with-eureka: true # 表示是否将自己注册到Eureka 默认为true
+#    fetch-registry: true # 表示是否从EurekaServer获取注册信息，，默认为true，如果是一个单节点，就设置为false，表示不需要同步其他的EurekaServer节点的数据，故而设为false
+---
+spring:
+  profiles: peer1   # 指定profile=peer1
+  application:
+    name: peer1
+server:
+  port: 8761
+eureka:
+  instance:
+    hostname: peer1 # 指定当profile=peer1时，主机名
+  appname: peer1
+  client:
+    serviceUrl:
+      defaultZone: http://user:password123@peer2:8762/eureka/ # 设置Eureka Server交互地址，查询服务和注册服务都需要依赖这个地址，默认是：http://localhost:8761/eureka/
+---
+spring:
+  profiles: peer2
+  application:
+    name: peer2
+server:
+  port: 8762
+eureka:
+  instance:
+    hostname: peer2
+  appname: peer2
+  client:
+    serviceUrl:
+      defaultZone: http://user:password123@peer1:8761/eureka/ # 将⾃⼰注册到peer2这个Eureka上⾯去

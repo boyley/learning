@@ -22,6 +22,8 @@
         <module>spring-cloud-study-feign-hystrix-user</module>
         <module>spring-cloud-study-hystrix-dashboard</module>
         <module>spring-cloud-study-hystrix-turbine</module>
+        <module>spring-cloud-study-consumer-user</module>
+        <module>spring-cloud-study-cluster-eureka-server-authenticating</module>
     </modules>
 
     <properties>
@@ -39,6 +41,9 @@
         </dependencies>
     </dependencyManagement>
     <dependencies>
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
     </dependencies>
 </project>
