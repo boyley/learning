@@ -1,0 +1,11 @@
+server:
+  port: 8010
+spring:
+  application:
+    name: consumer-user # 项⽬名称尽量⽤⼩写
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://user:password123@peer1:8761/eureka/,http://user:password123@peer2:8762/eureka/ # 指定注册中⼼的地址
+  instance:
+    preferIpAddress: true

@@ -25,6 +25,8 @@
         <module>spring-cloud-study-consumer-user</module>
         <module>spring-cloud-study-cluster-eureka-server-authenticating</module>
         <module>spring-cloud-study-cluster-provider-user-authenticating</module>
+        <module>spring-cloud-study-cluster-provider-user-metadata</module>
+        <module>spring-cloud-study-consumer-user-understanding-metadata</module>
     </modules>
 
     <properties>
