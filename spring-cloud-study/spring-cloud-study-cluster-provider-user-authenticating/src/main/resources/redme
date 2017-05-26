@@ -1,0 +1,5 @@
+注册需要认证的Eureka Server
+    只需将eureka.client.serverceUrl.defaultZone配置为http://user:password@EUREKA_HOST:EUREKA_PORT/eureka/ 就可以将http basic认证添加到Eureka client上了
+
+
+对于更加复杂的需求，可以创建一个类型为：DiscoveryClientOptionalArgs的@Bean，并向其中注入ClientFilter

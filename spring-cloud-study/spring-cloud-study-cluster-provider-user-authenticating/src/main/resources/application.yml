@@ -1,0 +1,35 @@
+server:
+  port: 8000
+spring:
+  application:
+    name: provider-user # 项⽬名称尽量⽤⼩写
+  datasource:
+    username: root
+    driver-class-name: com.mysql.jdbc.Driver
+    schema: classpath:schema.sql # 指定h2数据库的建表脚本
+    url: jdbc:mysql://localhost/learning?useUnicode=true&amp;characterEncoding=utf-8
+    data: classpath:data.sql
+    initialize: true
+    sql-script-encoding: utf-8
+  jpa:
+    hibernate:
+      ddl-auto: none
+logging:
+  level:
+    root: INFO
+    org.hibernate: debug
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://user:password123@peer1:8761/eureka/,http://user:password123@peer2:8762/eureka/ # 指定注册中⼼的地址
+  instance:
+    preferIpAddress: true   # 表示将自己的ip注册到Eureka Server ，如不配置该属性或将其设置为false，则表示注册微服务所在操作系统的hostname到Eureka Server。
+info:
+  app:
+    name: @project.artifactId@
+    encoding: @project.build.sourceEncoding@
+    java:
+      source: @java.version@
+      target: @java.version@

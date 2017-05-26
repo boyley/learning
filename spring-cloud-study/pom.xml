@@ -24,6 +24,7 @@
         <module>spring-cloud-study-hystrix-turbine</module>
         <module>spring-cloud-study-consumer-user</module>
         <module>spring-cloud-study-cluster-eureka-server-authenticating</module>
+        <module>spring-cloud-study-cluster-provider-user-authenticating</module>
     </modules>
 
     <properties>
