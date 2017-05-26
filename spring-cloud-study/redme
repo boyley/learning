@@ -28,6 +28,13 @@ eureka:
         perfer-ip-address: true
         ip-address: 127.0.0.1
 
+5. Eureka的健康检查
+eureka:
+    client:
+        healthcheck:
+            enabled: true
+开启健康检查
+
 
 
 
