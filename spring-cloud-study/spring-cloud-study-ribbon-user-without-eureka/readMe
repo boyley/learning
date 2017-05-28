@@ -1,0 +1,5 @@
+脱离Eureka使用Ribbon
+provider-user:
+    ribbon:
+      listOfServers:  localhost:8000,localhost:8001   # 通过listOfServers 指定服务器地址
+弃掉启动类上的@EnableDiscoveryClient注解
