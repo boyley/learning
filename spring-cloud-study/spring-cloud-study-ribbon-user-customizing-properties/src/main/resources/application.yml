@@ -9,3 +9,9 @@ eureka:
       defaultZone: http://user:password123@peer1:8761/eureka/,http://user:password123@peer2:8762/eureka/ # 指定注册中⼼的地址
   instance:
     preferIpAddress: true
+provider-user:
+    ribbon:
+      NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+
+
+

@@ -14,6 +14,7 @@
     <modules>
         <module>activemq</module>
         <module>spring-cloud-study</module>
+        <module>async</module>
     </modules>
     <packaging>pom</packaging>
 

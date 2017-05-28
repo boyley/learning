@@ -15,11 +15,17 @@ spring:
             preferredNetworks:
                 - 192.168
                 - 10.0
+eureka:
+    instnce:
+        prefer-ip-address: true
 3. 只使用站点本地地址
 spring:
     cloud:
         inetutils:
             useOnlySiteLocalInterfaces: true
+eureka:
+    instnce:
+        prefer-ip-address: true
 这样就可以强制使用站点本地地址
 
 4. 手动指定IP地址
@@ -34,6 +40,47 @@ eureka:
         healthcheck:
             enabled: true
 开启健康检查
+
+6. 自我保护设置
+    eureka.server.enable-self-preservation=false    true:启用自我保护，false：禁用自我保护
+
+7. 自定义Ribbon配置
+在Springcloud 中，Ribbon的默认配置如下（格式是BeanType beanname:ClassName）:
+●   IClientConfigribbonClientConfigDefaultClientConfigImpl
+●   IRule   ribbonRule: ZoneAvoidanceRule
+●   IPing ribbonPing: NoOpPing
+●   ServerList ribbonServerList:    ConfigurationBasedServerList
+●   ServerListFilter    ribbonServerListFilter: ZonePreferenceServerListerFilter
+●   ILoadBalancer   ribbonLoadBalancer: ZoneAwareLoadBalancer
+
+@Bean
+@ConditionalOnMissingBean
+public IRule ribbonRule(IClientConfig config){
+    ZoneAvoidanceRule rule = new ZoneAvoidanceRule();
+    rule.initWithNiwsConfig(config);
+    return rule;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

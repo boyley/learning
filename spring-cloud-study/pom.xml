@@ -27,6 +27,7 @@
         <module>spring-cloud-study-cluster-provider-user-authenticating</module>
         <module>spring-cloud-study-cluster-provider-user-metadata</module>
         <module>spring-cloud-study-consumer-user-understanding-metadata</module>
+        <module>spring-cloud-study-ribbon-user-customizing-properties</module>
     </modules>
 
     <properties>

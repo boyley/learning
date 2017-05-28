@@ -1,0 +1,12 @@
+使用自定义Ribbon配置
+◆   NFLoadBalancerClassName:    配置ILoadBalaner的实现类
+◆   NFLoadBalancerRuleClassName：    配置IRule的实现类
+◆   NFLoadBalancerPingClassName：    配置IPing的实现类
+◆   NIWSServerListClassName：    配置ServerList的实现类
+◆   NIWServerListFilterClassName：配置ServerListFilter实现类
+
+在application.yml文件添加以下内容：
+provider-user:
+    ribbon:
+      NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+这样就可以将负载均衡规则修改为随机

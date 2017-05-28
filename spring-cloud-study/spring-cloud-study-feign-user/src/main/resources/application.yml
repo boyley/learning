@@ -6,7 +6,7 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://peer1:8761/eureka/,http://peer2:8762/eureka/ # 指定注册中⼼的地址
+      defaultZone: http://user:password123@peer1:8761/eureka/,http://user:password123@peer2:8762/eureka/ # 指定注册中⼼的地址
   instance:
     preferIpAddress: true
 ribbon:
