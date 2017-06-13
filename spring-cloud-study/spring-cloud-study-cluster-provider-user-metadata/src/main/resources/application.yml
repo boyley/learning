@@ -5,6 +5,7 @@ spring:
     name: provider-user # 项⽬名称尽量⽤⼩写
   datasource:
     username: root
+    password: 123456
     driver-class-name: com.mysql.jdbc.Driver
     schema: classpath:schema.sql # 指定h2数据库的建表脚本
     url: jdbc:mysql://localhost/learning?useUnicode=true&amp;characterEncoding=utf-8

@@ -1,0 +1,32 @@
+多对多案例
+public class User implements Serializable{
+
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinTable(name="user_roles",
+            joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
+            inverseJoinColumns={@JoinColumn(name="role_id", referencedColumnName="id")})
+    private Role role;
+}
+
+@Entity
+@Table(name="roles")
+public class Role implements Serializable {
+
+    @OneToMany(cascade=CascadeType.ALL)
+    @JoinTable(name="user_roles",
+    joinColumns={@JoinColumn(name="role_id", referencedColumnName="id")},
+    inverseJoinColumns={@JoinColumn(name="user_id", referencedColumnName="id")})
+    private List<User> userList;
+}
+
+通过中间表 user_roles 关联user和role之间的关系
+
+
+CREATE TABLE `user_roles` (
+  `user_id` int(6) NOT NULL,
+  `role_id` int(6) NOT NULL,
+  KEY `user` (`user_id`),
+  KEY `role` (`role_id`),
+  CONSTRAINT `user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `role` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
