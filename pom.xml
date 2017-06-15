@@ -17,6 +17,7 @@
         <module>async</module>
         <module>jpa-study</module>
         <module>api-doc</module>
+        <module>spring-security</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -24,6 +25,7 @@
     <url>http://maven.apache.org</url>
 
     <properties>
+        <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
