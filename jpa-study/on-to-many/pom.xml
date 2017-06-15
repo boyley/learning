@@ -1,30 +1,23 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>learning</artifactId>
+        <artifactId>jpa-study</artifactId>
         <groupId>cn.shagle.learning</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>jpa-study</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>on-to-many</artifactId>
+    <packaging>jar</packaging>
 
-    <name>jpa-study</name>
+    <name>on-to-many</name>
     <url>http://maven.apache.org</url>
-    <modules>
-        <module>many-to-many</module>
-        <module>on-to-many</module>
-    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
+
     </dependencies>
 </project>

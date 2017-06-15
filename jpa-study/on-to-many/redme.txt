@@ -1,0 +1,5 @@
+Employee    职员表
+Phone       手机表   通过OWNER_ID 字段关联Employee 主键id
+
+一个员工有多个手机好
+一个手机号只属于一个职员
