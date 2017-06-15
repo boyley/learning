@@ -16,6 +16,7 @@
         <module>spring-cloud-study</module>
         <module>async</module>
         <module>jpa-study</module>
+        <module>api-doc</module>
     </modules>
     <packaging>pom</packaging>
 
