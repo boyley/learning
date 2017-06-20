@@ -1,0 +1,13 @@
+server:
+  port: 9999
+  context-path: /uaa
+
+security:
+  sessions: if-required
+  
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/alan-oauth?characterEncoding=UTF-8
+    username: uaa
+    password: password
+    driver-class-name: com.mysql.jdbc.Driver
