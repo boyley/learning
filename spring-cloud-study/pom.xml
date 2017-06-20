@@ -29,6 +29,9 @@
         <module>spring-cloud-study-consumer-user-understanding-metadata</module>
         <module>spring-cloud-study-ribbon-user-customizing-properties</module>
         <module>spring-cloud-study-ribbon-user-without-eureka</module>
+        <module>spring-cloud-study-feign-user-customizing</module>
+        <module>spring-cloud-study-provider-user-with-auth</module>
+        <module>spring-cloud-study-feign-user-manual</module>
     </modules>
 
     <properties>

@@ -1,0 +1,42 @@
+
+server:
+  port: 8010
+spring:
+  application:
+    name: user-provider # 项⽬名称尽量⽤⼩写
+  datasource:
+    username: root
+    driver-class-name: com.mysql.jdbc.Driver
+    schema: classpath*:schema.sql # 指定h2数据库的建表脚本
+    url: jdbc:mysql://localhost/learning?useUnicode=true&amp;characterEncoding=utf-8
+    data: classpath*:data.sql
+    initialize: true
+    sql-script-encoding: utf-8
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    default-property-inclusion: NON_NULL  # always|non_null|non_absent|non_default|non_empty
+    joda-date-time-format: yyyy-MM-dd HH:mm:ss
+logging:
+  level:
+    root: INFO
+    org.hibernate: debug
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+jwt:
+  security:
+    tokenExpirationTime: 15 # Number of minutes
+    refreshTokenExpTime: 60 # Minutes
+    tokenIssuer: http://svlada.com
+    tokenSigningKey: xm8EV6Hy5RMFK4EEACIDAwQus
+info:
+  app:
+    name: @project.artifactId@
+    encoding: @project.build.sourceEncoding@
+    java:
+      source: @java.version@
+      target: @java.version@
+debug: true

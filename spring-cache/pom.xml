@@ -7,14 +7,13 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>spring-security</artifactId>
+    <artifactId>spring-cache</artifactId>
     <packaging>pom</packaging>
 
-    <name>spring-security</name>
+    <name>spring-cache</name>
     <url>http://maven.apache.org</url>
     <modules>
-        <module>spring-securiy-ajax</module>
-        <module>spring-security-jwt</module>
+        <module>spring-cache-redis</module>
     </modules>
 
     <properties>

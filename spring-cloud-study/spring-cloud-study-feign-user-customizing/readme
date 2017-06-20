@@ -1,0 +1,13 @@
+在Spring Cloud中，Feign的默认配置类是FeignClientsConfiguration，该类定义了Feign默认使用的编码器，解码器，所使用的契约等，
+Spring Cloud允许使用注解@FeignClient的属性自定义Feign的配置，自定义配置的优先级比FeignClientsCiguration要高。
+Spring Cloud Netflix提供了如下的默认bean
+■   Decoder feignDecoder:ResponseEntityDecoder(which wraps a SpringDecoder)
+■   Encoder feignEncoder:SpringEncoder
+■   Logger  feignLogger:Slf3jLogger
+■   Feign.Builder   feignContract:  SpringMvcContraact
+■   Client feignClient:if Ribbon is enable itis a LoadBalancerFeignClient, other-wise the default feign client is used.
+■   Logger.Level
+■   Retryer
+■   ErrorDecoder
+■   Request.Options
+■   Collection<RequestInterceptor>

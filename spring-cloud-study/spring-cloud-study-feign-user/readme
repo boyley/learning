@@ -1,0 +1,8 @@
+如果不想使用Eureka，可以通过service.ribbon.listOfServers属性配置服务器列表
+还可以使用url属性指定请求的URL（URL可以是完整的URL或者主机名）
+@FeignClient(name = "provider-user", url = "http://localhost:8000/")
+
+
+
+
+

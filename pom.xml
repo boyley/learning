@@ -18,6 +18,7 @@
         <module>jpa-study</module>
         <module>api-doc</module>
         <module>spring-security</module>
+        <module>spring-cache</module>
     </modules>
     <packaging>pom</packaging>
 
