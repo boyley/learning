@@ -32,6 +32,7 @@
         <module>spring-cloud-study-feign-user-customizing</module>
         <module>spring-cloud-study-provider-user-with-auth</module>
         <module>spring-cloud-study-feign-user-manual</module>
+        <module>spring-cloud-study-oauth2</module>
     </modules>
 
     <properties>
