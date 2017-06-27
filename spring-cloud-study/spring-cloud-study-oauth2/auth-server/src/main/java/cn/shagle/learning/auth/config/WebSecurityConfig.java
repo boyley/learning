@@ -1,4 +1,4 @@
-package cn.shagle.learning;
+package cn.shagle.learning.auth.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

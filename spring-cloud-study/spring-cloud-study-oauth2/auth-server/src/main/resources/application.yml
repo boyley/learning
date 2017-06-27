@@ -1,19 +1,16 @@
 server:
-  port: 9999
-  context-path: /uaa
-
-security:
-  sessions: if-required
-  
-spring:
+  port: 8000
+auth:
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/alan-oauth?useUnicode=true&amp;characterEncoding=utf-8
     username: root
     password:
     driver-class-name: com.mysql.jdbc.Driver
   application:
-    name: auth
+    name: auth-server
 eureka:
   client:
-    service-url:
-      defaultZone: http://user:password123@peer1:8761/eureka/,http://user:password123@peer2:8762/eureka/
+    serviceUrl:
+      defaultZone: http://user:password123@peer1:8761/eureka/,http://user:password123@peer2:8762/eureka/ # 指定注册中⼼的地址
+  instance:
+    preferIpAddress: true   # 表示将自己的ip注册到Eureka Server ，如不配置该属性或将其设置为false，则表示注册微服务所在操作系统的hostname到Eureka Server。

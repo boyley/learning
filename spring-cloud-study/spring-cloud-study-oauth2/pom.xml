@@ -14,9 +14,6 @@
     <url>http://maven.apache.org</url>
     <modules>
         <module>auth-server</module>
-        <module>zuul-server</module>
-        <module>app</module>
-        <module>resource-server</module>
     </modules>
 
     <properties>
