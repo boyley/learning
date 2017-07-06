@@ -12,6 +12,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.web.context.SecurityContextRepository;
+import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
@@ -41,7 +42,21 @@ public class Oauth2SsoConfig extends OAuth2SsoDefaultConfiguration {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.securityContext().securityContextRepository(securityContextRepository());
+        http
+                .authorizeRequests()
+                .antMatchers("/", "/**/*.html").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/")
+                .permitAll()
+                .and()
+                .csrf()
+                .csrfTokenRepository(csrfTokenRepository())
+                .and()
+                .securityContext().securityContextRepository(securityContextRepository()).and()
+                .addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);
     }
 
     @Bean
