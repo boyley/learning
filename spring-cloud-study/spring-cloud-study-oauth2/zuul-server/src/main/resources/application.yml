@@ -23,6 +23,8 @@ zuul:
     user:
       path: /user/**
       url: http://localhost:9999/uaa/user
+  redis:
+    cache-time: 30000
 
 
 security:

@@ -2,6 +2,9 @@ package cn.shagle.learning.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.AuthenticationTrustResolver;
 import org.springframework.security.authentication.AuthenticationTrustResolverImpl;
 import org.springframework.security.core.Authentication;
@@ -10,7 +13,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 import org.springframework.security.web.context.HttpRequestResponseHolder;
-import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.security.web.context.SaveContextOnUpdateOrErrorResponseWrapper;
 import org.springframework.security.web.context.SecurityContextRepository;
 import org.springframework.util.ClassUtils;
@@ -23,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Enumeration;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by lenovo on 2017/7/6.
@@ -35,6 +38,12 @@ public class RedisSecurityContextRepository implements SecurityContextRepository
     private boolean isServlet3 = ClassUtils.hasMethod(ServletRequest.class, "startAsync");
 
     private AuthenticationTrustResolver trustResolver = new AuthenticationTrustResolverImpl();
+
+    @Autowired
+    private RedisTemplate<String, SecurityContext> redisTemplate;
+
+    @Value("zuul.redis.cache-time")
+    private long cacheTime;
 
     @Override
     public SecurityContext loadContext(HttpRequestResponseHolder requestResponseHolder) {
@@ -101,11 +110,11 @@ public class RedisSecurityContextRepository implements SecurityContextRepository
 
 
     private Object loadSecurityContext(String tokenValue) {
-        return null;
+        return redisTemplate.opsForValue().get(tokenValue);
     }
 
-    private void saveContext(String tokenValue,SecurityContext securityContext) {
-
+    private void saveContext(String tokenValue, SecurityContext securityContext) {
+        redisTemplate.opsForValue().set(tokenValue,securityContext,cacheTime, TimeUnit.MILLISECONDS);
     }
 
     private static class Servlet3SaveToRedisRequestWrapper extends
@@ -113,7 +122,7 @@ public class RedisSecurityContextRepository implements SecurityContextRepository
         private final SaveContextOnUpdateOrErrorResponseWrapper response;
 
         public Servlet3SaveToRedisRequestWrapper(HttpServletRequest request,
-                                                   SaveContextOnUpdateOrErrorResponseWrapper response) {
+                                                 SaveContextOnUpdateOrErrorResponseWrapper response) {
             super(request);
             this.response = response;
         }
@@ -156,9 +165,9 @@ public class RedisSecurityContextRepository implements SecurityContextRepository
                 return;
             }
             String tokenValue = extractToken(request);
-            if(tokenValue != null) {
+            if (tokenValue != null) {
                 if (contextChanged(context) || RedisSecurityContextRepository.this.loadSecurityContext(tokenValue) == null) {
-                    RedisSecurityContextRepository.this.saveContext(tokenValue,context);
+                    RedisSecurityContextRepository.this.saveContext(tokenValue, context);
                     if (logger.isDebugEnabled()) {
                         logger.debug("SecurityContext '" + context
                                 + "' stored to Redis: '" + tokenValue);

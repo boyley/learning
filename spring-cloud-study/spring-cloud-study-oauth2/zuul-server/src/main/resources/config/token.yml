@@ -1,0 +1,10 @@
+token:
+  database: 1
+  host: localhost
+  pool:
+    max-active: 8
+    max-idle: 8
+    max-wait: 1
+    min-idle: 1
+  port: 6379
+  timeout: 3000
