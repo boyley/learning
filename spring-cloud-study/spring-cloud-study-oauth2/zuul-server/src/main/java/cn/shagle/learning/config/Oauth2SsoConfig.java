@@ -62,7 +62,7 @@ public class Oauth2SsoConfig extends OAuth2SsoDefaultConfiguration {
                 .and()
                 .securityContext().securityContextRepository(securityContextRepository()).and()
                 .addFilterAfter(csrfHeaderFilter(), CsrfFilter.class)
-                .addFilterBefore(tokenFilter(),SecurityContextPersistenceFilter.class);
+                .addFilterBefore(tokenFilter(), SecurityContextPersistenceFilter.class);
     }
 
     @Bean
@@ -76,8 +76,8 @@ public class Oauth2SsoConfig extends OAuth2SsoDefaultConfiguration {
             @Override
             protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
                 String tokenValue = extractToken(request);
-                if(tokenValue == null) {
-                    request.setAttribute("access_token", UUID.randomUUID().toString());
+                if (tokenValue == null) {
+                    request.setAttribute(OAuth2AccessToken.ACCESS_TOKEN, UUID.randomUUID().toString());
                 }
                 filterChain.doFilter(request, response);
             }
