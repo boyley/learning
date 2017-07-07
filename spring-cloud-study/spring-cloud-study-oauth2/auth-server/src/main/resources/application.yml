@@ -1,5 +1,6 @@
 server:
-  port: 8000
+  port: 9999
+  context-path: /uaa
 auth:
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/alan-oauth?useUnicode=true&amp;characterEncoding=utf-8
