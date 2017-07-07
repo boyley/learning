@@ -13,6 +13,7 @@ import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 import redis.clients.jedis.Jedis;
@@ -29,7 +30,6 @@ import java.util.List;
  */
 @Configuration
 @ConditionalOnClass({JedisConnection.class, RedisOperations.class, Jedis.class})
-@EnableConfigurationProperties(TokenProperties.class)
 public class RedisTokenConfig {
 
     /**
@@ -125,24 +125,13 @@ public class RedisTokenConfig {
 
         @Bean
         @ConditionalOnMissingBean(name = "redisTemplate")
-        public RedisTemplate<Object, Object> redisTemplate(
+        public RedisTemplate<String, SecurityContext> redisTemplate(
                 RedisConnectionFactory redisConnectionFactory)
                 throws UnknownHostException {
-            RedisTemplate<Object, Object> template = new RedisTemplate<Object, Object>();
+            RedisTemplate<String, SecurityContext> template = new RedisTemplate<>();
             template.setConnectionFactory(redisConnectionFactory);
             return template;
         }
-
-        @Bean
-        @ConditionalOnMissingBean(StringRedisTemplate.class)
-        public StringRedisTemplate stringRedisTemplate(
-                RedisConnectionFactory redisConnectionFactory)
-                throws UnknownHostException {
-            StringRedisTemplate template = new StringRedisTemplate();
-            template.setConnectionFactory(redisConnectionFactory);
-            return template;
-        }
-
     }
 
 }

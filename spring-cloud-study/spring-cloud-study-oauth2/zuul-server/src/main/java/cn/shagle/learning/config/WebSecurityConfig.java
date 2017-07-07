@@ -18,12 +18,6 @@ import org.springframework.security.web.context.SecurityContextRepository;
 @Order(-20)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Bean
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-    }
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.securityContext().securityContextRepository(securityContextRepository());

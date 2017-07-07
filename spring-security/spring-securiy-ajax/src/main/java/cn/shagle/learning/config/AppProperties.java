@@ -1,7 +1,8 @@
 package cn.shagle.learning.config;
 
-import com.sun.istack.internal.NotNull;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by Danlu on 2017/6/15.

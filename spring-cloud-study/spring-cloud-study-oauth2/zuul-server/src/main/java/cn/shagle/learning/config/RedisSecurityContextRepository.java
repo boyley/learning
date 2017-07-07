@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Enumeration;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -42,8 +43,7 @@ public class RedisSecurityContextRepository implements SecurityContextRepository
     @Autowired
     private RedisTemplate<String, SecurityContext> redisTemplate;
 
-    @Value("zuul.redis.cache-time")
-    private long cacheTime;
+    private long cacheTime=30000;
 
     @Override
     public SecurityContext loadContext(HttpRequestResponseHolder requestResponseHolder) {
@@ -52,14 +52,6 @@ public class RedisSecurityContextRepository implements SecurityContextRepository
         HttpServletResponse response = requestResponseHolder.getResponse();
 
         String tokenValue = extractToken(request);
-        if (tokenValue == null) {
-            if (debug) {
-                logger.debug("Token not found in headers and not found in request parameters. Not an OAuth2 request");
-            }
-
-            return null;
-        }
-
         SecurityContext context = readSecurityContextFromSession(tokenValue);
 
         if (context == null) {
@@ -188,6 +180,13 @@ public class RedisSecurityContextRepository implements SecurityContextRepository
 
     private SecurityContext readSecurityContextFromSession(String tokenValue) {
         final boolean debug = logger.isDebugEnabled();
+        if (tokenValue == null) {
+            if (debug) {
+                logger.debug("No tokenValue currently exists");
+            }
+
+            return null;
+        }
         Object contextFromRedis = loadSecurityContext(tokenValue);
 
         if (contextFromRedis == null) {
