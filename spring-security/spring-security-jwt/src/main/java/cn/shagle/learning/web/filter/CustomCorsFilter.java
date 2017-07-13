@@ -1,4 +1,4 @@
-package cn.shagle.learning.filter;
+package cn.shagle.learning.web.filter;
 
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;

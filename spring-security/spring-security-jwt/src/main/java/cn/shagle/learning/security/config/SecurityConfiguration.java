@@ -1,6 +1,6 @@
 package cn.shagle.learning.security.config;
 
-import cn.shagle.learning.filter.CustomCorsFilter;
+import cn.shagle.learning.web.filter.CustomCorsFilter;
 import cn.shagle.learning.security.Http401UnauthorizedEntryPoint;
 import cn.shagle.learning.security.auth.ajax.AjaxLoginProcessingFilter;
 import cn.shagle.learning.security.auth.jwt.JwtTokenAuthenticationProcessingFilter;

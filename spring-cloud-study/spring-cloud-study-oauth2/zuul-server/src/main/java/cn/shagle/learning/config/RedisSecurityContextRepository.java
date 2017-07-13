@@ -138,6 +138,11 @@ public class RedisSecurityContextRepository implements SecurityContextRepository
         private final SecurityContext contextBeforeExecution;
         private final Authentication authBeforeExecution;
 
+        @Autowired
+        public void onResponseCommitted() {
+           super.onResponseCommitted();
+        }
+
         public SaveToRedisResponseWrapper(HttpServletResponse response,
                                           HttpServletRequest request,
                                           SecurityContext context) {
@@ -242,9 +247,9 @@ public class RedisSecurityContextRepository implements SecurityContextRepository
     }
 
     private String extractHeaderToken(HttpServletRequest request) {
-        Enumeration<String> headers = request.getHeaders("Authorization");
-        while (headers.hasMoreElements()) { // typically there is only one (most servers enforce that)
-            String value = headers.nextElement();
+        String headers = request.getHeader("Authorization");
+        while (headers != null) { // typically there is only one (most servers enforce that)
+            String value = headers;
             if ((value.toLowerCase().startsWith(OAuth2AccessToken.BEARER_TYPE.toLowerCase()))) {
                 String authHeaderValue = value.substring(OAuth2AccessToken.BEARER_TYPE.length()).trim();
                 // Add this here for the auth details later. Would be better to change the signature of this method.

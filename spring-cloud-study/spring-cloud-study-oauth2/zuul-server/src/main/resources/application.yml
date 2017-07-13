@@ -5,7 +5,7 @@ logging:
     org.springframework.web: WARN
     
 server:
-  port: 8080
+  port: 8085
 spring:
   aop:
     proxy-target-class: true
@@ -30,15 +30,16 @@ zuul:
 security:
   oauth2:    
     client:
-      accessTokenUri: http://localhost:9999/uaa/oauth/token
-      userAuthorizationUri: http://localhost:9999/uaa/oauth/authorize
-      clientId: ui1
-      clientSecret: ui1-secret   
+      accessTokenUri: http://localhost:9998/uaa/oauth/token
+      userAuthorizationUri: http://localhost:9998/uaa/oauth/authorize
+      clientId: client
+      clientSecret: secret
+      auto-approve-scopes: app
     resource:
-      userInfoUri: http://localhost:9999/uaa/user
+      userInfoUri: http://localhost:9998/uaa/user
       preferTokenInfo: false
   sessions: ALWAYS
 eureka:
   client:
     service-url:
-      defaultZone: http://user:password123@peer1:8761/eureka/,http://user:password123@peer2:8762/eureka/ # 指定注册中⼼的地址
+      defaultZone: http://localhost:1111/eureka # 指定注册中⼼的地址

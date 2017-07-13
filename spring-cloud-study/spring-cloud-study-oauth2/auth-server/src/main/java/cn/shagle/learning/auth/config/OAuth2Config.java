@@ -2,9 +2,11 @@ package cn.shagle.learning.auth.config;
 
 import cn.shagle.learning.oauth2.provider.code.CustomJdbcAuthorizationCodeServices;
 import com.alibaba.druid.pool.DruidDataSource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -26,6 +28,9 @@ import javax.sql.DataSource;
 @EnableAuthorizationServer
 public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
 
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         super.configure(security);
@@ -43,7 +48,7 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         super.configure(endpoints);
-        endpoints.tokenStore(tokenStore()).authorizationCodeServices(codeServices()).approvalStore(approvalStore());
+        endpoints.authenticationManager(this.authenticationManager).tokenStore(tokenStore()).authorizationCodeServices(codeServices()).approvalStore(approvalStore());
     }
 
     @Bean
